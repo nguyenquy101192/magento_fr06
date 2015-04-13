@@ -1,0 +1,21 @@
+<?xml version='1.0' ?>
+<layout>
+    <catalog_product_view>
+        <block type="sm_zoom/zoom" name="sm_media" as="sm_media" template="sm/media.phtml"/>
+        <reference name="head">
+            <action method="removeItem" ifconfig="sm_zoom/config/status">
+                <type>skin_js</type>
+                <name>js/jquery.elevatezoom.js</name>
+            </action>
+            <action method="addItem" ifconfig="sm_zoom/config/status">
+                <type>skin_js</type>
+                <file>js/sm/cloudzoom_v3.js</file>
+            </action>
+        </reference>
+        <reference name="product.info.media">
+            <action method="setTemplate" ifconfig="sm_zoom/config/status">
+                <template>sm/media.phtml</template>
+            </action>
+        </reference>
+    </catalog_product_view>
+</layout>

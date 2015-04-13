@@ -1,0 +1,138 @@
+
+<?php
+    $listProductByCategory = $this->getProductByCategory();
+    if(count($listProductByCategory) != 0) {
+?>
+<div class="block block-layered-nav block-layered-nav--no-filters">
+    <div class="block-title">
+        <strong><span>Shop By</span></strong>
+    </div>
+    <div class="block-content toggle-content">
+        <!--Block state filter-->
+        <div id="filter-state">
+        <?php
+            echo $this->getChildHtml('state');
+        ?>
+        </div>
+
+        <dl class="narrow-by-list">
+            <input type="hidden" id="current-url" value="<?php echo Mage::helper('core/url')->getCurrentUrl();?>"/>
+            <?php
+            $_brands = $this->getAttributeToFilter('brand');
+            $listBrands = $this->removeItemDuplicateValue($_brands, 'brand');
+            if(count($listBrands) != 0) {?>
+            <dt class="odd">Brand</dt>
+            <dd class="odd">
+                <ol>
+                    <?php
+                    $number = 0;
+                    foreach($listBrands as $brandKey=>$brands) {
+                        if($brands != null) {?>
+                    <li>
+                        <span>
+                            <input id="brand<?php echo $number;?>" value="<?php echo $brandKey;?>" type="checkbox"/>
+                            &nbsp;<span class="list-brands"><?php echo $brands;?></span>
+                            &nbsp;(<span class="count-products"><?php echo $this->countProductByAttribute($brandKey, 'brand');?></span>)
+                        </span>
+                    </li>
+                    <?php
+                        $number++;
+
+                        }
+                    }?>
+                </ol>
+                <input type="hidden" name="number.brand" id="number-brand"
+                       value="<?php echo $number;?>"
+                       title="Number product by brand"/>
+            </dd>
+            <?php }?>
+
+            <?php
+                $_colors = $this->getAttributeToFilter('color');
+                $listColors = $this->removeItemDuplicateValue($_colors, 'color');
+                if(count($listColors) != 0) {
+
+            ?>
+            <dt class="odd">Choose color</dt>
+            <dd class="odd" id="choose-color-to-filter">
+                <ol>
+                    <?php
+                        $position = 0;
+                        foreach($listColors as $colorKey=>$colors) {
+                            if($colors != null) {?>
+                            <li>
+                                <button type="text" id="color<?php echo $position;?>" class="list-colors"
+                                       name="color-<?php echo $colors;?>"
+                                       value="<?php echo $colorKey;?>"
+                                       style="background: <?php echo strtolower($colors);?>;"
+                                       status="unchecked">
+                                </button>
+                            </li>
+                            <?php
+                            $position++;
+                            }
+                        }?>
+                </ol>
+                <input type="hidden" name="number_color" id="number-color"
+                       value="<?php echo $position;?>"
+                       title="Number product by color"/>
+            </dd>
+            <?php } ?>
+
+
+            <?php
+                $_sizes = $this->getAttributeToFilter('size');
+                $listSizes = $this->removeItemDuplicateValue($_sizes, 'size');
+                if(count($listSizes) != 0) {
+            ?>
+            <dt class="odd">Size</dt>
+            <dd class="odd">
+                <select id="select-size">
+                    <option value="0">Choose size</option>
+                    <?php
+                        foreach($listSizes as $key=>$sizes) {
+                            if($sizes != null) {
+                    ?>
+                    <option value="<?php echo $key;?>"><?php echo $sizes;?></option>
+                    <?php
+                            }
+                        }
+                    ?>
+                </select>
+            </dd>
+            <?php
+                }
+            ?>
+
+            <dt class="odd">Price</dt>
+            <dd class="odd">
+                <input type="text" id="amount" readonly style="border:0; color:#636363; font-weight:bold; text-align: center;">
+                <div id="slider-range"></div>
+                <?php
+                $minPrices = $this->getAttributeToFilter('special_price')
+                    ->addAttributeToSort('price', 'ASC')
+                    ->getFirstItem()
+                    ->getSpecialPrice();
+                if($minPrices == 0) {
+                    $minPrices = $this->getAttributeToFilter('price')
+                        ->addAttributeToSort('price', 'ASC')
+                        ->getFirstItem()
+                        ->getPrice() - 1;
+                }
+
+                $maxPrices = $this->getAttributeToFilter('price')
+                    ->addAttributeToSort('price', 'DESC')
+                    ->getFirstItem()
+                    ->getPrice();
+
+                $step = ($maxPrices - $minPrices) / 10;
+                ?>
+                <input type="hidden" id="min-price" value="<?php echo number_format($minPrices, '0', '.', '');?>"/>
+                <input type="hidden" id="max-price" value="<?php echo number_format($maxPrices, '0', '.', '');?>"/>
+                <input type="hidden" id="step-price" value="<?php echo number_format($step, '0', '', '');?>"/>
+            </dd>
+        </dl>
+    </div>
+</div>
+        <input type="hidden" value="<?php echo $this->getSkinUrl() . 'images/ajax-loader.gif';?>" id="loading-data"/>
+<?php } ?>

@@ -1,0 +1,43 @@
+<?xml version='1.0' ?>
+<config>
+    <modules>
+        <SM_Filter>
+            <version>0.1.0</version>
+        </SM_Filter>
+    </modules>
+    <frontend>
+        <routers>
+            <catalog>
+                <args>
+                    <modules>
+                        <SM_Filter before="Mage_Catalog">SM_Filter</SM_Filter>
+                    </modules>
+                </args>
+            </catalog>
+        </routers>
+        <layout>
+            <updates>
+                <sm_filter>
+                    <file>sm/filter.xml</file>
+                </sm_filter>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <sm_filter>
+                <class>SM_Filter_Block</class>
+            </sm_filter>
+            <catalog>
+                <rewrite>
+                    <product_list>SM_Filter_Block_Filter_Product_List</product_list>
+                </rewrite>
+            </catalog>
+        </blocks>
+        <helpers>
+            <sm_filter>
+                <class>SM_Filter_Helper</class>
+            </sm_filter>
+        </helpers>
+    </global>
+</config>

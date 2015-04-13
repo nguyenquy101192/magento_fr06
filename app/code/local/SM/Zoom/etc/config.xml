@@ -1,0 +1,29 @@
+<?xml version='1.0' ?>
+<config>
+    <modules>
+        <SM_Zoom>
+            <version>0.1.0</version>
+        </SM_Zoom>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <sm_zoom_layout>
+                    <file>sm/zoom.xml</file>
+                </sm_zoom_layout>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <sm_zoom>
+                <class>SM_Zoom_Block</class>
+            </sm_zoom>
+        </blocks>
+        <helpers>
+            <sm_zoom>
+                <class>SM_Zoom_Helper</class>
+            </sm_zoom>
+        </helpers>
+    </global>
+</config>

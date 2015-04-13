@@ -1,0 +1,40 @@
+<?xml version='1.0' ?>
+<layout>
+    <catalog_category_layered>
+        <block type="sm_filter/filter_layer_filter" name="filter" as="filter" template="sm/filter.phtml"/>
+        <block type="sm_filter/filter_product_list" name="list" as="list" template="sm/product/list.phtml"/>
+        <block type="sm_filter/state_filter" name="state" as="state" template="sm/state.phtml"/>
+        <reference name="head">
+            <action method="addItem" ifconfig="filter/config/status">
+                <type>skin_js</type>
+                <file>js/sm/jquery.filter.js</file>
+            </action>
+            <action method="addItem" ifconfig="filter/config/status">
+                <type>skin_js</type>
+                <file>js/sm/jquery-ui.js</file>
+            </action>
+
+            <action method="addItem" ifconfig="filter/config/status">
+                <type>skin_css</type>
+                <file>css/sm/jquery-ui.css</file>
+            </action>
+            <action method="addItem" ifconfig="filter/config/status">
+                <type>skin_css</type>
+                <file>css/sm/style.filter.css</file>
+            </action>
+        </reference>
+        <reference name="left_first">
+            <action method="unsetChild" ifconfig="filter/config/status">
+                <block>catalog.leftnav</block>
+            </action>
+            <action method="append" ifconfig="filter/config/status">
+                <block>filter</block>
+            </action>
+        </reference>
+        <reference name="filter">
+            <action method="insert">
+                <block>state</block>
+            </action>
+        </reference>
+    </catalog_category_layered>
+</layout>

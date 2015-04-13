@@ -1,0 +1,64 @@
+<?php
+    $_listStates = $this->getStateFilter();
+    if($this->isHasState()) :
+?>
+<style>
+    .label-state {
+        font-weight: bold;
+    }
+</style>
+<?php
+if($_listStates != null):?>
+    <div class="currently">
+        <p class="block-subtitle"><?php echo Mage::helper('sm_filter')->__('Currently Shopping by:') ?></p>
+    </div>
+    <?php
+        if($_listStates['brand'] && $_listStates['brand'] != null) :?>
+            <span class="label-state">Brand:&nbsp;</span>
+                <ol>
+                    <?php
+                    foreach($_listStates['brand'] as $brands) :?>
+                        <li>-&nbsp;<?php echo $brands;?></li>
+                    <?php endforeach?>
+                </ol>
+        <?php endif;
+
+        if($_listStates['color'] && $_listStates['color'] != null) :?>
+            <span class="label-state">Color:&nbsp;</span>
+            <ol>
+                <?php
+                foreach($_listStates['color'] as $colors) :?>
+                    <li>-&nbsp;<?php echo $colors;?></li>
+                <?php endforeach?>
+            </ol>
+        <?php endif;
+
+        if($_listStates['size'] && $_listStates['size'] != null) :?>
+            <span class="label-state">Size:&nbsp;</span><?php echo $_listStates['size'];?><br/>
+        <?php endif;
+
+        if($_listStates['low_price'] && $_listStates['low_price'] != null) {?>
+            <span class="label-state">Price:&nbsp;</span>
+            <?php
+            if($_listStates['height_price'] && $_listStates['height_price'] != null) {
+                echo $_listStates['low_price'] . "$ - " . $_listStates['height_price'] . "$";
+            }
+            else {
+                echo $_listStates['low_price'] . "$ - ";
+            }
+        }
+        elseif($_listStates['height_price'] && $_listStates['height_price'] != null) {?>
+            <span class="label-state">Price:&nbsp;</span>
+            <?php
+            if($_listStates['low_price'] && $_listStates['low_price'] != null) {
+                echo $_listStates['low_price'] . "$ - " . $_listStates['height_price'] . "$";
+            }
+            else {
+                echo " - " . $_listStates['height_price'] . "$";
+            }
+        }?>
+    <div class="actions">
+        <a href="<?php echo $this->getUrlCategory(Mage::app()->getRequest()->getParam('id'));?>" id="clear-all-state">Clear All</a>
+    </div>
+    <?php endif;
+endif; ?>

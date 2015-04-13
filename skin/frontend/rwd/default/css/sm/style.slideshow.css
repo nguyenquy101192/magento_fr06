@@ -1,0 +1,133 @@
+#slides {
+    display: none
+}
+
+#slides img {
+    width: 100%;
+    height: 100%;
+}
+
+#slides img:hover {
+    cursor: pointer;
+}
+
+.slider-caption {
+    position: absolute;
+    bottom: 10%;
+    left: 0px;
+    z-index: 10;
+    width: 100%;
+    height: 20%;
+    text-align: center;
+    line-height: 50px;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 20px;
+    text-overflow: ellipsis;
+    white-space: inherit;
+    overflow: hidden;
+}
+
+.caption-title:hover {
+    cursor: pointer;
+}
+
+#slides .slidesjs-navigation {
+    margin-top:3px;
+}
+
+.slidesjs-pagination {
+    margin: 6px 0 0;
+    float: right;
+    list-style: none;
+}
+
+.slidesjs-pagination li {
+    float: left;
+    margin: 0 1px;
+}
+
+.slidesjs-pagination li a {
+    display: block;
+    width: 13px;
+    height: 0;
+    padding-top: 13px;
+    background-image: url(../../../../../../../skin/frontend/rwd/default/images/pagination.png);
+    background-position: 0 0;
+    float: left;
+    overflow: hidden;
+}
+
+.slidesjs-pagination li a.active,
+.slidesjs-pagination li a:hover.active {
+    background-position: 0 -13px;
+}
+
+.slidesjs-pagination li a:hover {
+    background-position: 0 -26px;
+}
+
+#slides a:link,
+#slides a:visited {
+    color: #636363;
+}
+
+#slides a:hover,
+#slides a:active {
+    color: #fff;
+}
+
+.navbar {
+    overflow: hidden
+}
+
+#slides .slidesjs-previous {
+    position: absolute;
+    top: 40%;
+    left: 10px;
+    font-size: 60px;
+    z-index: 10;
+}
+
+#slides .slidesjs-next {
+    position: absolute;
+    top: 40%;
+    right: 10px;
+    font-size: 60px;
+    z-index: 10;
+}
+
+/*For diffirent media*/
+
+
+/* For tablets & smart phones */
+@media (max-width: 767px) {
+    body {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    .container {
+        width: auto
+    }
+}
+
+/* For smartphones */
+@media (max-width: 480px) {
+    .container {
+        width: auto
+    }
+}
+
+/* For smaller displays like laptops */
+@media (min-width: 768px) and (max-width: 979px) {
+    .container {
+        width: 724px
+    }
+}
+
+/* For larger displays */
+@media (min-width: 1200px) {
+    .container {
+        width: 1170px
+    }
+}

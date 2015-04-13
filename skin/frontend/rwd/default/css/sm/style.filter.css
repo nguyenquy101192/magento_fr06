@@ -1,0 +1,37 @@
+#choose-color-to-filter ol {
+    list-style: none;
+    display: inline-block;
+}
+
+#choose-color-to-filter ol li {
+    float: left;
+    padding: 5px;
+}
+
+.list-colors {
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    border: 1px solid #fff;
+    box-shadow: 2px 0px 2px;
+}
+
+.list-colors:hover {
+    cursor: pointer;
+}
+
+.list-manufacturers {
+    cursor: pointer;
+}
+
+#slider-range {
+    background: #bbb;
+}
+
+.ui-slider-range {
+    background: #0044ff;
+}
+
+.ui-slider-handle {
+    background: #f6931f;
+}

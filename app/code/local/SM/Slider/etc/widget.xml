@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<widgets>
+    <sm_slider type="sm_slider/slider">
+        <name>SM Slider</name>
+        <description>Widget slider</description>
+        <parameters>
+            <template translate="label">
+                <label>Frontend Template</label>
+                <values>
+                    <text translate="label">
+                        <value>sm/slider.phtml</value>
+                        <label>Text Links</label>
+                    </text>
+                </values>
+            </template>
+        </parameters>
+    </sm_slider>
+</widgets>

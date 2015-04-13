@@ -1,0 +1,97 @@
+<?php
+$auto               = Mage::getStoreConfig('featured/config/auto');
+$categoryId         = Mage::app()->getRequest()->getParam('id');
+$_productCollection = $this->getFeaturedProducts($categoryId);
+$_helper            = $this->helper('catalog/output');
+if(Mage::getStoreConfig('featured/config/number')) {
+    if(Mage::getStoreConfig('featured/config/number') > count($_productCollection)) {
+        $numberInSlide = count($_productCollection);
+    } elseif(Mage::getStoreConfig('featured/config/number') > 10) {
+        $numberInSlide = 10;
+    } else {
+        $numberInSlide = Mage::getStoreConfig('featured/config/number');
+    }
+} else {
+    $numberInSlide = 8;
+}
+
+if($_productCollection || $_productCollection != null)
+{
+    ?>
+<div class="featured">
+    <div class="block-title"><strong><span>Featured products</strong></span></div>
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <?php foreach ($_productCollection as $_product){ ?>
+                <div class="swiper-slide">
+                    <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getname();?>" class="product-image">
+                        <img src="<?php echo $this->helper('catalog/image')->init($_product, 'small_image')->resize(150); ?>"
+                             alt="<?php echo $_product->getname();?>"
+                            id="product-collection-image-<?php echo $_product->getId();?>"/>
+                    </a>
+
+                    <div class="product-info">
+                        <h2 class="product-name">
+                            <a href="<?php echo $_product->getProductUrl() ?>" title="<?php echo $_product->getname();?>">
+                                <?php echo $this->stripTags($_product->getName(), null, true); ?>
+                            </a>
+                        </h2>
+
+                        <div class="price-box">
+                            <span class="regular-price" id="<?php $_product->getId();?>">
+                                <span class="price">$ <?php echo number_format($_product->getPrice(), "2", ".", ","); ?></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            <?php }?>
+        </div>
+        <div class="pagination"></div>
+    </div>
+</div>
+<?php
+}
+?>
+
+<?php
+    $width = (100/$numberInSlide) - 5;
+    $padding = '';
+    if($numberInSlide == 1) {
+        $padding = 100;
+    } elseif($numberInSlide ==2) {
+        $padding = 50;
+    } elseif($numberInSlide ==3) {
+        $padding = 37;
+    } elseif($numberInSlide ==4) {
+        $padding = 25;
+    } elseif($numberInSlide ==5) {
+        $padding = 18;
+    } elseif($numberInSlide ==6) {
+        $padding = 12;
+    } elseif($numberInSlide ==7) {
+        $padding = 6;
+    } else {
+        $padding = 0;
+    }
+?>
+<style>
+    .swiper-slide
+    {
+        width: <?php echo $width;?>%;
+        height: 100%;
+    }
+
+    .swiper-slide img {
+        padding: 0px <?php echo $padding;?>%;
+    }
+</style>
+<script>
+    var mySwiper = new Swiper('.swiper-container',{
+        pagination: '.pagination',
+        paginationClickable: true,
+        slidesPerView: <?php echo $numberInSlide;?>,
+        loop: true,
+        autoplay: <?php echo $auto;?>,
+        speed: 1500
+    })
+</script>

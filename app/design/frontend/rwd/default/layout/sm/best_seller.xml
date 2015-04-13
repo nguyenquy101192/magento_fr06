@@ -1,0 +1,21 @@
+<?xml version='1.0' ?>
+<layout>
+    <default>
+        <block type="sm_best_seller/bestSellers" name="best_seller" as="best_seller" template="sm/bestsellers.phtml"/>
+        <reference name="head">
+            <action method="addItem" ifconfig="best_seller/config/status">
+                <type>skin_js</type>
+                <file>js/sm/idangerous.swiper.min.js</file>
+            </action>
+            <action method="addItem" ifconfig="best_seller/config/status">
+                <type>skin_css</type>
+                <file>css/sm/idangerous.swiper.css</file>
+            </action>
+        </reference>
+        <reference name="right">
+            <action method="insert" ifconfig="best_seller/config/status">
+                <block>best_seller</block>
+            </action>
+        </reference>
+    </default>
+</layout>

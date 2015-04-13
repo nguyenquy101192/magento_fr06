@@ -1,0 +1,29 @@
+<?xml version='1.0' ?>
+<config>
+    <modules>
+        <SM_BestSeller>
+            <version>0.1.0</version>
+        </SM_BestSeller>
+    </modules>
+    <frontend>
+        <layout>
+            <updates>
+                <sm_best_seller>
+                    <file>sm/best_seller.xml</file>
+                </sm_best_seller>
+            </updates>
+        </layout>
+    </frontend>
+    <global>
+        <blocks>
+            <sm_best_seller>
+                <class>SM_BestSeller_Block</class>
+            </sm_best_seller>
+        </blocks>
+        <helpers>
+            <best_seller>
+                <class>SM_BestSeller_Helper</class>
+            </best_seller>
+        </helpers>
+    </global>
+</config>

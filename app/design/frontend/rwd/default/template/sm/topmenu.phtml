@@ -1,0 +1,13 @@
+<style>
+    .Flat_mega_menu
+    {
+        position: relative;
+        background: <?php echo Mage::getStoreConfig('mega_menu/config/color')?>;
+    }
+</style>
+
+<div class="Flat_mega_menu">
+    <?php
+        echo $this->getMenu();
+    ?>
+</div>

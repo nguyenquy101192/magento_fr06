@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <mega_menu_adminhtml_menu_index>
+        <reference name="content">
+            <block type="sm_mega_menu/adminhtml_menu" name="menu"/>
+        </reference>
+    </mega_menu_adminhtml_menu_index>
+</layout>

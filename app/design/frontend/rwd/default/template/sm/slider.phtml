@@ -1,0 +1,66 @@
+<style>
+    .container {
+        width: <?php
+                     if($this->getWidth() > 900)
+                        echo "100%";
+                     else
+                        echo $this->getWidth()."px";
+               ?>;
+        overflow: hidden;
+        position: relative;
+    }
+</style>
+
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $(function() {
+            /*
+            *   set time display, width, height,
+            *   effect, auto-play for slider
+            */
+            $('#slides').slidesjs({
+                width: <?php
+                     if($this->getWidth() > 900)
+                        echo "900";
+                     else
+                        echo $this->getWidth();
+               ?>,
+                height: <?php
+                     if($this->getHeight() > 400)
+                        echo "400";
+                     else
+                        echo $this->getHeight();
+               ?>,
+                play: {
+                    interval: <?php echo $this->getTimeInterval();?>,
+                    effect: "<?php echo $this->getEffect();?>",
+                    auto: <?php echo $this->getAuto();?>
+                },
+                navigation: false
+            });
+
+            /*
+             *   set time display for caption
+             */
+            $("#caption .caption-title:gt(0)").hide();
+
+            setInterval(function(){
+                    $('.caption-title:first-child').fadeOut(400)
+                        .next('.caption-title').slideDown(800)
+                        .end().appendTo("#caption");}, <?php echo $this->getTimeInterval();?>
+            );
+        });
+    })
+</script>
+
+<div class="container">
+    <div id="slides">
+        <?php echo $this->getSlider();?>
+        <a href="" class="slidesjs-previous slidesjs-navigation" id="prev"><i class="fa fa-chevron-left icon-large"></i></a>
+        <a href="" class="slidesjs-next slidesjs-navigation" id="next"><i class="fa fa-chevron-right icon-large"></i></a>
+    </div>
+    <div class="slider-caption" id="caption">
+        <?php echo $this->getCaption();?>
+    </div>
+</div>
+

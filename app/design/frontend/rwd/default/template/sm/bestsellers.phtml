@@ -1,0 +1,61 @@
+<?php
+$width                     = '250px';
+$height                    = '250px';
+$auto                      = Mage::getStoreConfig('best_seller/config/auto');
+$categoryId                = Mage::app()->getRequest()->getParam('id');
+$_productPrepareCollection = $this->getBestSellerProducts($categoryId);
+if(Mage::getStoreConfig('best_seller/config/number') > count($_productPrepareCollection)) {
+    $num = count($_productPrepareCollection);
+} else {
+    $num = Mage::getStoreConfig('best_seller/config/number');
+}
+
+if($_productPrepareCollection->getData() || count($_productPrepareCollection->getData()) != null) {?>
+<div class="best-seller">
+    <div class="block-title"><strong><span>Best Seller products</strong></span></div>
+    <div class="swipper-container ">
+        <div class="swiper-wrapper ">
+            <?php foreach($_productPrepareCollection as $_product) {?>
+            <div class="swiper-slide">
+                <a href="<?php echo Mage::getUrl($_product->getUrlPath()); ?>" title="<?php echo $_product->getname();?>" class="product-image">
+                    <img src="<?php echo Mage::getUrl() . 'media/catalog/product' . $_product->getSmallImage(); ?>"
+                         alt="<?php echo $_product->getName();?>"
+                         id="product-collection-image-<?php echo $_product->getId();?>"
+                         style='width: <?php echo $width;?>; height: <?php echo $height;?>;'/>
+                </a>
+
+                <div class="product-info">
+                    <h2 class="product-name">
+                        <a href="<?php echo Mage::getUrl($_product->getUrlPath());?>" title="<?php echo $_product->getName();?>">
+                            <?php echo $this->stripTags($_product->getName(), null, true); ?>
+                        </a>
+                    </h2>
+
+                    <div class="price-box">
+                        <span class="regular-price" id="<?php $_product->getId();?>">
+                            <span class="price">$ <?php echo number_format($_product->getPrice(), "2", ".", ","); ?></span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <?php }?>
+        </div>
+    </div>
+</div>
+<?php } ?>
+<script>
+    var mySwiper = new Swiper('.swipper-container',{
+        paginationClickable: true,
+        slidesPerView: <?php echo $num;?>,
+        loop: true,
+        autoplay: <?php echo $auto;?>,
+        speed: 3000
+    })
+</script>
+<style>
+    .best-seller {
+        width: 100%;
+        padding: 20px 0px;
+        overflow: hidden;
+    }
+</style>

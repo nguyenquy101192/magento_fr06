@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<layout>
+    <slider_adminhtml_slider_index>
+        <reference name="content">
+            <block type="sm_slider/adminhtml_slider" name="slider"/>
+        </reference>
+    </slider_adminhtml_slider_index>
+</layout>

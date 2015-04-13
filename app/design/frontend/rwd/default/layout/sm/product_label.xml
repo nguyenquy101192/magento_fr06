@@ -1,0 +1,17 @@
+<?xml version='1.0' ?>
+<layout>
+    <catalog_category_view>
+        <block type="sm_product_label/product_label" name="product_label" as="product_label" template="sm/productlabel.phtml"/>
+        <!--<reference name="head">-->
+            <!--<action method="addItem">-->
+                <!--<type>skin_js</type>-->
+                <!--<file>js/sm/jquery.label.js</file>-->
+            <!--</action>-->
+        <!--</reference>-->
+        <!--<reference name="product_list">-->
+            <!--<action method="setTemplate">-->
+                <!--<template>sm/productlabel.phtml</template>-->
+            <!--</action>-->
+        <!--</reference>-->
+    </catalog_category_view>
+</layout>
